@@ -6,7 +6,6 @@ variable "aws_projectname" {
   type        = string
   description = "This is the project name"
 }
-
 variable "bucketname" {
   type        = string
   description = "This is the cidr block for the vpc"
