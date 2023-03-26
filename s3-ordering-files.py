@@ -3,7 +3,7 @@ import boto3
 from datetime import datetime
 
 today = datetime.today()
-todays_date = today.strftime("%Y%m%d")
+datetoday = today.strftime("%Y%m%d")
 
 def lambda_handler(event,context):
 
@@ -19,7 +19,7 @@ def lambda_handler(event,context):
     for item in contents:
         s3_object_folder_names.append(item.get("Key"))
 
-    s3_dir_name = todays_date + "/"
+    s3_dir_name = datetoday + "/"
 
     if s3_dir_name not in s3_object_folder_names:
         s3_client.put_object(Bucket = bucket_name, Key = (s3_dir_name))
