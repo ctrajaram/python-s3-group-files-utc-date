@@ -2,9 +2,8 @@
 import boto3
 from datetime import datetime, timezone
 
-today = datetime.today()
-#today = datetime.utcnow()
-today = datetime.now(timezone.utc)
+
+today = datetime.utcnow()
 datetoday = today.strftime("%Y%m%d")
 
 
