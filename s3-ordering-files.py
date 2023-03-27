@@ -26,16 +26,12 @@ if s3_dir_name not in s3_object_folder_names:
     s3_client.put_object(Bucket = bucket_name, Key = (s3_dir_name))
 
 for item in contents:
-    print("Item is ",item)
-    l = item.get("LastModified");
+   
     s3_object_creation_date = item.get("LastModified").strftime("%Y%m%d") + "/"
     get_last_modified = int(l.strftime('%s'))
-    print("GET LAST MODIFIED", get_last_modified)
+   
     s3_object_name = item.get("Key")
-    print("s3 object name: ", s3_object_name)
-    print("s3_object_creation_date", s3_object_creation_date)
-    print("s3 dir name", s3_dir_name)
-        # Checking if object creation date matches the s3 folder name and also isolating the folders and objects by checking / not in condition
+    # Checking if object creation date matches the s3 folder name and also isolating the folders and objects by checking / not in condition
     if(s3_object_creation_date == s3_dir_name and "/" not in s3_object_name):
         s3_client.copy_object(Bucket = bucket_name, CopySource = bucket_name +"/"+s3_object_name , Key = s3_dir_name+s3_object_name)
         s3_client.delete_object(Bucket=bucket_name,Key=s3_object_name)
